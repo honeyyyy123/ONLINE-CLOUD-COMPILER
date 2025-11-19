@@ -112,6 +112,5 @@ def stop_process():
     return jsonify({"status": "stopped"})
 
 if __name__ == "__main__":
-    print(f"Server running at http://127.0.0.1:{PORT}/")
-    threading.Thread(target=lambda: (time.sleep(1), webbrowser.open(f"http://127.0.0.1:{PORT}/"))).start()
-    app.run(port=PORT, debug=False, threaded=True)
+    # Cloud servers ke liye host 0.0.0.0 hona chahiye
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
